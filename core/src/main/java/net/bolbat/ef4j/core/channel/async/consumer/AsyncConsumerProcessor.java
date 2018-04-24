@@ -66,7 +66,9 @@ public class AsyncConsumerProcessor<E> implements Runnable {
 
 		try {
 			origin.consume(polled);
+			// CHECKSTYLE:OFF
 		} catch (final Throwable e) {
+			// CHECKSTYLE:ON
 			listener.onError(polled, DefaultProcessingErrors.CONSUMER_ERROR, e);
 			logger.warn("processing error, skipping", e);
 		}

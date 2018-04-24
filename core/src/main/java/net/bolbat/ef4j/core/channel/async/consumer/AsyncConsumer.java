@@ -86,20 +86,18 @@ public class AsyncConsumer<E> implements Consumer<E> {
 	}
 
 	public void shutdown() {
-		synchronized (started) {
-			if (!started.get())
-				throw new AsyncConsumerException("is not started");
+		if (!started.compareAndSet(true, false))
+			throw new AsyncConsumerException("is not started");
 
-			started.set(false);
+		started.set(false);
 
-			processors.forEach(p -> p.stop());
-			processors = null;
+		processors.forEach(p -> p.stop());
+		processors = null;
 
-			AsyncUtils.shutdown(executor, true, options.getStopTimeout(), options.getStopTimeUnit());
-			executor = null;
+		AsyncUtils.shutdown(executor, true, options.getStopTimeout(), options.getStopTimeUnit());
+		executor = null;
 
-			queue = null;
-		}
+		queue = null;
 	}
 
 	@Override

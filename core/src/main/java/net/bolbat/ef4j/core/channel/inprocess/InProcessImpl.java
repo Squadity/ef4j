@@ -128,7 +128,9 @@ public class InProcessImpl<E> implements Channel<E> {
 		for (final Producer<E> producer : producers)
 			try {
 				shutdown(producer);
+				// CHECKSTYLE:OFF
 			} catch (final Throwable e) {
+				// CHECKSTYLE:ON
 				LOGGER.warn(String.format("Channel[%s|%s] producer[%s] shutdown failed, skipping", info.getId(), info.getType().getId(), producer), e);
 			} finally {
 				producers.remove(producer);
@@ -138,7 +140,9 @@ public class InProcessImpl<E> implements Channel<E> {
 		for (final Consumer<E> consumer : consumers) {
 			try {
 				shutdown(consumer);
+				// CHECKSTYLE:OFF
 			} catch (final Throwable e) {
+				// CHECKSTYLE:ON
 				LOGGER.warn(String.format("Channel[%s|%s] consumer[%s] shutdown failed, skipping", info.getId(), info.getType().getId(), consumer), e);
 			} finally {
 				consumers.remove(consumer);

@@ -28,6 +28,7 @@ public class ChannelServiceImpl implements ChannelService {
 	private final ConcurrentMap<ChannelKey, Channel<?>> channels = new ConcurrentHashMap<>();
 	private final ConcurrentMap<String, ChannelFactory> factories = new ConcurrentHashMap<>();
 	private final IdBasedLockManager<ChannelKey> locksManager = new ConcurrentIdBasedLockManager<>();
+	private final Object lock = new Object();
 
 	@Override
 	public <C> Channel<C> get(final ChannelInfo info) {
@@ -89,7 +90,7 @@ public class ChannelServiceImpl implements ChannelService {
 		validate(type);
 		validate(factory);
 
-		synchronized (factories) {
+		synchronized (lock) {
 			final ChannelFactory existing = factories.get(type.getId());
 			if (existing != null)
 				throw new ChannelServiceException(String.format("ChannelType[%s] factory[%s] already registered", type.getId(), existing.getClass()));
@@ -102,7 +103,7 @@ public class ChannelServiceImpl implements ChannelService {
 	public void unregister(final ChannelType type) {
 		validate(type);
 
-		synchronized (factories) {
+		synchronized (lock) {
 			final ChannelFactory removed = factories.remove(type.getId());
 			if (removed == null)
 				throw new ChannelServiceException(String.format("ChannelType[%s] factory is not registered", type.getId()));
@@ -122,7 +123,9 @@ public class ChannelServiceImpl implements ChannelService {
 		for (final ChannelKey key : channels.keySet()) {
 			try {
 				shutdown(key);
+				// CHECKSTYLE:OFF
 			} catch (final Throwable e) {
+				// CHECKSTYLE:ON
 				LOGGER.warn(String.format("Channel[%s|%s] shutdown failed, skipping", key.getId(), key.getTypeId()), e);
 			} finally {
 				channels.remove(key);
@@ -178,7 +181,7 @@ public class ChannelServiceImpl implements ChannelService {
 			throw new IllegalArgumentException("options argument is null");
 	}
 
-	private static class ChannelKey {
+	public static class ChannelKey {
 
 		private final String id;
 		private final String typeId;

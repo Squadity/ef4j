@@ -39,7 +39,9 @@ public class InProcessProducer<E> implements Producer<E> {
 		channel.getConsumers().forEach(consumer -> {
 			try {
 				consumer.consume(event);
+				// CHECKSTYLE:OFF
 			} catch (final Throwable e) {
+				// CHECKSTYLE:ON
 				listener.onError(event, DefaultProcessingErrors.CONSUMER_ERROR, e);
 				LOGGER.warn("publishing error, skipping", e);
 			}

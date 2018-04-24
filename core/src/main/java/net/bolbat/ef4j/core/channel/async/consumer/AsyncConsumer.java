@@ -91,10 +91,10 @@ public class AsyncConsumer<E> implements Consumer<E> {
 
 		started.set(false);
 
-		processors.forEach(p -> p.stop());
+		processors.forEach(p -> p.shutdown());
 		processors = null;
 
-		AsyncUtils.shutdown(executor, true, options.getStopTimeout(), options.getStopTimeUnit());
+		AsyncUtils.shutdown(executor, true, options.getShutdownTimeout(), options.getShutdownTimeUnit());
 		executor = null;
 
 		queue = null;

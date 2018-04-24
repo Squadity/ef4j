@@ -48,7 +48,7 @@ public class InProcessChannelProducer<E> implements Producer<E> {
 		});
 	}
 
-	protected void stop() {
+	protected void shutdown() {
 		started.set(false);
 	}
 

@@ -31,8 +31,8 @@ public interface AsyncConsumerOptions extends ConsumerOptions {
 
 	int getProcessingThreads();
 
-	long getStopTimeout();
+	long getShutdownTimeout();
 
-	TimeUnit getStopTimeUnit();
+	TimeUnit getShutdownTimeUnit();
 
 }

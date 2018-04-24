@@ -74,7 +74,7 @@ public class AsyncConsumerProcessor<E> implements Runnable {
 		}
 	}
 
-	public void stop() {
+	protected void shutdown() {
 		started.set(false);
 	}
 

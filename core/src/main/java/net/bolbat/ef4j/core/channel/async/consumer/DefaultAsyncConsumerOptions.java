@@ -12,8 +12,8 @@ public final class DefaultAsyncConsumerOptions implements AsyncConsumerOptions {
 	public static final long QUEUE_OFFER_TIMEOUT = 10L;
 	public static final TimeUnit QUEUE_OFFER_TIME_UNIT = TimeUnit.MILLISECONDS;
 	public static final int PROCESSING_THREADS = 1;
-	public static final long STOP_TIMEOUT = 30L;
-	public static final TimeUnit STOP_TIME_UNIT = TimeUnit.SECONDS;
+	public static final long SHUTDOWN_TIMEOUT = 30L;
+	public static final TimeUnit SHUTDOWN_TIME_UNIT = TimeUnit.SECONDS;
 
 	private DefaultAsyncConsumerOptions() {
 	}
@@ -49,13 +49,13 @@ public final class DefaultAsyncConsumerOptions implements AsyncConsumerOptions {
 	}
 
 	@Override
-	public long getStopTimeout() {
-		return STOP_TIMEOUT;
+	public long getShutdownTimeout() {
+		return SHUTDOWN_TIMEOUT;
 	}
 
 	@Override
-	public TimeUnit getStopTimeUnit() {
-		return STOP_TIME_UNIT;
+	public TimeUnit getShutdownTimeUnit() {
+		return SHUTDOWN_TIME_UNIT;
 	}
 
 }

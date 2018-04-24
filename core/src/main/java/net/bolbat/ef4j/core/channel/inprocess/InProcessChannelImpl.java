@@ -97,7 +97,7 @@ public class InProcessChannelImpl<E> implements Channel<E> {
 
 			getProducers().remove(resolved);
 
-			((InProcessChannelProducer<?>) resolved).stop(); // TODO review this
+			((InProcessChannelProducer<?>) resolved).shutdown(); // TODO review this
 
 			// TODO Implement 'Async' support
 		}

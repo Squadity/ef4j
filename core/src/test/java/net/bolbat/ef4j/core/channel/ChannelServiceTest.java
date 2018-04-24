@@ -12,13 +12,13 @@ import net.bolbat.ef4j.api.channel.Channel;
 import net.bolbat.ef4j.api.channel.ChannelInfo;
 import net.bolbat.ef4j.api.producer.Producer;
 import net.bolbat.ef4j.core.channel.async.consumer.DefaultAsyncConsumerOptions;
-import net.bolbat.ef4j.core.channel.inprocess.InProcessInfo;
+import net.bolbat.ef4j.core.channel.inprocess.InProcessChannelInfo;
 
 public class ChannelServiceTest {
 
 	private final String event = "test";
 	private final AtomicInteger eventsCount = new AtomicInteger();
-	private final ChannelInfo info = InProcessInfo.of("test-channel");
+	private final ChannelInfo info = InProcessChannelInfo.of("test-channel");
 	private ChannelService service;
 	private Channel<String> channel;
 	private Producer<String> producer;

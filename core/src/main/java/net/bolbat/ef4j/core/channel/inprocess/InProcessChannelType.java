@@ -2,12 +2,12 @@ package net.bolbat.ef4j.core.channel.inprocess;
 
 import net.bolbat.ef4j.api.channel.ChannelType;
 
-public final class InProcessType implements ChannelType {
+public final class InProcessChannelType implements ChannelType {
 
 	public static final String ID = "IN_PROCESS";
-	public static final InProcessType INSTANCE = new InProcessType();
+	public static final InProcessChannelType INSTANCE = new InProcessChannelType();
 
-	private InProcessType() {
+	private InProcessChannelType() {
 	}
 
 	@Override

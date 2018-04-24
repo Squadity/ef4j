@@ -17,15 +17,15 @@ import net.bolbat.ef4j.api.producer.Producer;
 import net.bolbat.ef4j.api.producer.ProducerOptions;
 import net.bolbat.ef4j.core.channel.async.consumer.AsyncConsumer;
 
-public class InProcessImpl<E> implements Channel<E> {
+public class InProcessChannelImpl<E> implements Channel<E> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(InProcessImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(InProcessChannelImpl.class);
 
 	private final ChannelInfo info;
 	private final List<Producer<E>> producers = new CopyOnWriteArrayList<>();
 	private final List<Consumer<E>> consumers = new CopyOnWriteArrayList<>();
 
-	public InProcessImpl(final ChannelInfo aInfo, final ChannelOptions aOptions) {
+	public InProcessChannelImpl(final ChannelInfo aInfo, final ChannelOptions aOptions) {
 		if (aInfo == null)
 			throw new IllegalArgumentException("aInfo argument is null");
 		this.info = aInfo;
@@ -70,7 +70,7 @@ public class InProcessImpl<E> implements Channel<E> {
 
 		synchronized (consumers) {
 			if (getConsumer(consumer) != null)
-				throw new InProcessException(String.format("Consumer[%s] already exist", consumer));
+				throw new InProcessChannelException(String.format("Consumer[%s] already exist", consumer));
 
 			switch (options.getProcessingMode()) {
 				case SYNC:
@@ -81,7 +81,7 @@ public class InProcessImpl<E> implements Channel<E> {
 					getConsumers().add(asyncConsumer);
 					break;
 				default:
-					throw new InProcessException(String.format("Operating mode[%s] is unsupported", options.getProcessingMode()));
+					throw new InProcessChannelException(String.format("Operating mode[%s] is unsupported", options.getProcessingMode()));
 			}
 		}
 	}
@@ -93,11 +93,11 @@ public class InProcessImpl<E> implements Channel<E> {
 		synchronized (producers) {
 			final Producer<E> resolved = getProducer(producer);
 			if (resolved == null)
-				throw new InProcessException(String.format("Producer[%s] is not exist", producer));
+				throw new InProcessChannelException(String.format("Producer[%s] is not exist", producer));
 
 			getProducers().remove(resolved);
 
-			((InProcessProducer<?>) resolved).stop(); // TODO review this
+			((InProcessChannelProducer<?>) resolved).stop(); // TODO review this
 
 			// TODO Implement 'Async' support
 		}
@@ -111,7 +111,7 @@ public class InProcessImpl<E> implements Channel<E> {
 		synchronized (consumers) {
 			final Consumer<E> resolved = getConsumer(consumer);
 			if (resolved == null)
-				throw new InProcessException(String.format("Consumer[%s] is not exist", consumer));
+				throw new InProcessChannelException(String.format("Consumer[%s] is not exist", consumer));
 
 			getConsumers().remove(resolved);
 
@@ -161,7 +161,7 @@ public class InProcessImpl<E> implements Channel<E> {
 	protected Producer<E> createProducer(final ProducerOptions options) {
 		// TODO Implement 'Async' support
 
-		return new InProcessProducer<>(this, options);
+		return new InProcessChannelProducer<>(this, options);
 	}
 
 	protected Producer<E> getProducer(final Producer<E> origin) {

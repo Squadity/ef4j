@@ -5,23 +5,23 @@ import static net.bolbat.utils.lang.StringUtils.isEmpty;
 import net.bolbat.ef4j.api.channel.ChannelInfo;
 import net.bolbat.ef4j.api.channel.ChannelType;
 
-public final class InProcessInfo implements ChannelInfo {
+public final class InProcessChannelInfo implements ChannelInfo {
 
 	private final String id;
 
-	public InProcessInfo(final String aId) {
+	public InProcessChannelInfo(final String aId) {
 		if (isEmpty(aId))
 			throw new IllegalArgumentException("aId argument is empty");
 		this.id = aId;
 	}
 
-	public static InProcessInfo of(final String aId) {
-		return new InProcessInfo(aId);
+	public static InProcessChannelInfo of(final String aId) {
+		return new InProcessChannelInfo(aId);
 	}
 
 	@Override
 	public ChannelType getType() {
-		return InProcessType.INSTANCE;
+		return InProcessChannelType.INSTANCE;
 	}
 
 	@Override

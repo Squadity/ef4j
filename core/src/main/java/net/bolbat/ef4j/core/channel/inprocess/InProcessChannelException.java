@@ -2,7 +2,7 @@ package net.bolbat.ef4j.core.channel.inprocess;
 
 import net.bolbat.ef4j.api.channel.ChannelException;
 
-public class InProcessException extends ChannelException {
+public class InProcessChannelException extends ChannelException {
 
 	/**
 	 * Basic serialVersionUID variable.
@@ -12,7 +12,7 @@ public class InProcessException extends ChannelException {
 	/**
 	 * Default constructor.
 	 */
-	public InProcessException() {
+	public InProcessChannelException() {
 		super();
 	}
 
@@ -22,7 +22,7 @@ public class InProcessException extends ChannelException {
 	 * @param message
 	 *            exception message
 	 */
-	public InProcessException(final String message) {
+	public InProcessChannelException(final String message) {
 		super(message);
 	}
 
@@ -32,7 +32,7 @@ public class InProcessException extends ChannelException {
 	 * @param cause
 	 *            exception cause
 	 */
-	public InProcessException(final Throwable cause) {
+	public InProcessChannelException(final Throwable cause) {
 		super(cause);
 	}
 
@@ -44,7 +44,7 @@ public class InProcessException extends ChannelException {
 	 * @param cause
 	 *            exception cause
 	 */
-	public InProcessException(final String message, final Throwable cause) {
+	public InProcessChannelException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
@@ -60,7 +60,7 @@ public class InProcessException extends ChannelException {
 	 * @param writableStackTrace
 	 *            whether or not the stack trace should be writable
 	 */
-	public InProcessException(final String message, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
+	public InProcessChannelException(final String message, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 

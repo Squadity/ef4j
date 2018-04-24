@@ -1,7 +1,7 @@
 package net.bolbat.ef4j.core.channel;
 
-import net.bolbat.ef4j.core.channel.inprocess.InProcessFactory;
-import net.bolbat.ef4j.core.channel.inprocess.InProcessType;
+import net.bolbat.ef4j.core.channel.inprocess.InProcessChannelFactory;
+import net.bolbat.ef4j.core.channel.inprocess.InProcessChannelType;
 
 public final class ChannelServiceFactory {
 
@@ -15,7 +15,7 @@ public final class ChannelServiceFactory {
 		final ChannelService result = create();
 
 		// configuring default types
-		result.register(InProcessType.INSTANCE, new InProcessFactory());
+		result.register(InProcessChannelType.INSTANCE, new InProcessChannelFactory());
 
 		return result;
 	}

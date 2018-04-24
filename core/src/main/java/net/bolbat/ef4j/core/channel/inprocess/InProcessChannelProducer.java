@@ -11,15 +11,15 @@ import net.bolbat.ef4j.api.producer.ProducerListener;
 import net.bolbat.ef4j.api.producer.ProducerNoopListener;
 import net.bolbat.ef4j.api.producer.ProducerOptions;
 
-public class InProcessProducer<E> implements Producer<E> {
+public class InProcessChannelProducer<E> implements Producer<E> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(InProcessProducer.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(InProcessChannelProducer.class);
 
 	private final AtomicBoolean started = new AtomicBoolean(true);
-	private final InProcessImpl<E> channel;
+	private final InProcessChannelImpl<E> channel;
 	private final ProducerListener<E> listener;
 
-	protected InProcessProducer(final InProcessImpl<E> aChannel, final ProducerOptions aOptions) {
+	protected InProcessChannelProducer(final InProcessChannelImpl<E> aChannel, final ProducerOptions aOptions) {
 		if (aChannel == null)
 			throw new IllegalArgumentException("aChannel argument is null");
 		this.channel = aChannel;
@@ -34,7 +34,7 @@ public class InProcessProducer<E> implements Producer<E> {
 	@Override
 	public void produce(final E event) {
 		if (!started.get())
-			throw new InProcessException("is not started");
+			throw new InProcessChannelException("is not started");
 
 		channel.getConsumers().forEach(consumer -> {
 			try {

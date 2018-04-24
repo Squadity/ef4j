@@ -58,7 +58,7 @@ public class AsyncConsumerProcessor<E> implements Runnable {
 		try {
 			polled = queue.poll(options.getQueuePollTimeout(), options.getQueuePollTimeUnit());
 		} catch (final InterruptedException e) {
-			interrupted.set(true);
+			interrupted.set(true); // TODO should we also shutdown processor?
 		}
 
 		if (polled == null)

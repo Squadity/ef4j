@@ -5,7 +5,7 @@ import static net.bolbat.utils.lang.StringUtils.isEmpty;
 import net.bolbat.ef4j.api.channel.ChannelInfo;
 import net.bolbat.ef4j.api.channel.ChannelType;
 
-public final class InProcessChannelInfo implements ChannelInfo {
+public class InProcessChannelInfo implements ChannelInfo {
 
 	private final String id;
 
@@ -20,7 +20,7 @@ public final class InProcessChannelInfo implements ChannelInfo {
 	}
 
 	@Override
-	public ChannelType getType() {
+	public final ChannelType getType() {
 		return InProcessChannelType.INSTANCE;
 	}
 

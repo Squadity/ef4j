@@ -71,7 +71,7 @@ public class ChannelServiceImpl implements ChannelService {
 		validate(options);
 
 		final ChannelKey key = toKey(info);
-		try (final IdBasedLock<ChannelKey> lock = locksManager.obtainLock(key).lock()) {
+		try (IdBasedLock<ChannelKey> lock = locksManager.obtainLock(key).lock()) {
 			final Channel<?> existing = channels.get(key);
 			if (existing != null)
 				return CastUtils.cast(existing);
@@ -134,7 +134,7 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	private void shutdown(final ChannelKey key) {
-		try (final IdBasedLock<ChannelKey> lock = locksManager.obtainLock(key).lock()) {
+		try (IdBasedLock<ChannelKey> lock = locksManager.obtainLock(key).lock()) {
 			final Channel<?> channel = channels.remove(key);
 			if (channel == null)
 				throw new ChannelServiceException(String.format("Channel[%s|%s] is not exist", key.getId(), key.getTypeId()));

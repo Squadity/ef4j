@@ -12,12 +12,13 @@
 	</parent>
 
 	<dependencies>
+		<!-- Logging dependencies -->
 		<dependency>
 			<groupId>net.bolbat.ef4j</groupId>
 			<artifactId>ef4j-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
+		<!-- Common dependencies -->
 		<dependency>
 			<groupId>net.bolbat</groupId>
 			<artifactId>bb-utils</artifactId>

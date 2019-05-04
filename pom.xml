@@ -12,23 +12,34 @@
 	<parent>
 		<groupId>net.bolbat</groupId>
 		<artifactId>bb-parent</artifactId>
-		<version>14-SNAPSHOT</version>
+		<version>15</version>
 	</parent>
 
 	<properties>
+		<!-- Logging dependencies -->
+		<bb-logging-bom.version>0.1</bb-logging-bom.version>
 		<!-- Common dependencies -->
-		<bb-utils.version>0.3.0-SNAPSHOT</bb-utils.version>
-		<bb-test.version>0.1.0-SNAPSHOT</bb-test.version>
+		<bb-utils.version>0.3.0</bb-utils.version>
+		<!-- Testing dependencies -->
+		<bb-test.version>0.1.0</bb-test.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- Logging dependencies -->
+			<dependency>
+				<groupId>net.bolbat</groupId>
+				<artifactId>bb-logging-bom</artifactId>
+				<version>${bb-logging-bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Common dependencies -->
 			<dependency>
 				<groupId>net.bolbat</groupId>
 				<artifactId>bb-utils</artifactId>
 				<version>${bb-utils.version}</version>
 			</dependency>
-
 			<!-- Testing dependencies -->
 			<dependency>
 				<groupId>net.bolbat</groupId>
@@ -45,7 +56,6 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-
 		<!-- Testing dependencies -->
 		<dependency>
 			<groupId>net.bolbat</groupId>

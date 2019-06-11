@@ -7,12 +7,11 @@
 	<packaging>pom</packaging>
 	<name>EF4J</name>
 	<description>Event Facade 4 Java</description>
-	<url>http://confluence.infra.bolbat.net/display/EF4J</url>
 
 	<parent>
 		<groupId>net.bolbat</groupId>
 		<artifactId>bb-parent</artifactId>
-		<version>15</version>
+		<version>16-SNAPSHOT</version>
 	</parent>
 
 	<properties>
@@ -69,9 +68,9 @@
 	</modules>
 
 	<scm>
-		<connection>scm:git:ssh://git@bitbucket.infra.bolbat.net:9074/EF4J/main.git</connection>
-		<developerConnection>scm:git:ssh://git@bitbucket.infra.bolbat.net:9074/EF4J/main.git</developerConnection>
-		<url>http://bitbucket.infra.bolbat.net/scm/EF4J/main.git</url>
+		<connection>scm:git:ssh://git@code.solutionary.tech:9074/bbinc/ef4j.git</connection>
+		<developerConnection>scm:git:ssh://git@code.solutionary.tech:9074/bbinc/ef4j.git</developerConnection>
+		<url>https://code.solutionary.tech/projects/BBINC/repos/ef4j/</url>
 	</scm>
 
 </project>
